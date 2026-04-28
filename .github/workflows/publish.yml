@@ -32,7 +32,7 @@ jobs:
       - name: Build and test formula
         run: |
           VERSION=$(grep -E '^  version "' Formula/openwatcom-v2.rb | sed 's/.*"\(.*\)".*/\1/')
-          brew test-bot --tap=sharkyrawr/openwatcom --root-url=https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-${VERSION}
+          brew test-bot --tap=sharkyrawr/openwatcom --root-url="https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-${VERSION}"
 
       - name: Upload bottles
         if: github.event_name == 'push'
@@ -62,7 +62,7 @@ jobs:
         id: version
         run: |
           VERSION=$(grep -E '^  version "' Formula/openwatcom-v2.rb | sed 's/.*"\(.*\)".*/\1/')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
