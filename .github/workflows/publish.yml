@@ -1,0 +1,74 @@
+name: Build and Publish Bottles
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  test-bot:
+    strategy:
+      matrix:
+        os:
+          - macos-26      # Apple Silicon (latest)
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Cache Homebrew Bundler RubyGems
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+
+      - name: Install Ruby Bundler gems
+        run: brew install-bundler-gems
+
+      - name: Build and test formula
+        run: |
+          VERSION=$(grep -E '^  version "' Formula/openwatcom-v2.rb | sed 's/.*"\(.*\)".*/\1/')
+          brew test-bot --tap=sharkyrawr/openwatcom --root-url=https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-${VERSION}
+
+      - name: Upload bottles
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: bottles-${{ matrix.os }}
+          path: '*.bottle.*'
+
+  publish:
+    needs: test-bot
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download all bottles
+        uses: actions/download-artifact@v4
+        with:
+          path: bottles
+          pattern: bottles-*
+          merge-multiple: true
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=$(grep -E '^  version "' Formula/openwatcom-v2.rb | sed 's/.*"\(.*\)".*/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: openwatcom-v2-${{ steps.version.outputs.version }}
+          name: openwatcom-v2 ${{ steps.version.outputs.version }}
+          files: bottles/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
