@@ -32,7 +32,7 @@ jobs:
       - name: Build and test formula
         run: |
           VERSION=$(grep -E '^  version "' Formula/openwatcom-v2.rb | sed 's/.*"\(.*\)".*/\1/')
-          brew test-bot --tap=sharkyrawr/openwatcom --root-url="https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-${VERSION}"
+          brew test-bot --tap=sharkyrawr/openwatcom --root-url="https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-${VERSION}" openwatcom-v2
 
       - name: Upload bottles
         if: github.event_name == 'push'
