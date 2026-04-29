@@ -54,12 +54,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@main
+
       - name: Download all bottles
         uses: actions/download-artifact@v4
         with:
           path: bottles
           pattern: bottles-*
           merge-multiple: true
+
+      - name: Merge bottle block into formula
+        run: |
+          shopt -s nullglob
+          json_files=(bottles/*.bottle.json)
+          if [ ${#json_files[@]} -eq 0 ]; then
+            echo "No bottle JSON files found, skipping bottle merge."
+            exit 0
+          fi
+          brew bottle --merge --write --no-commit --no-all-checks "${json_files[@]}"
 
       - name: Get version
         id: version
@@ -72,6 +85,18 @@ jobs:
         with:
           tag_name: openwatcom-v2-${{ steps.version.outputs.version }}
           name: openwatcom-v2 ${{ steps.version.outputs.version }}
-          files: bottles/*
+          files: bottles/*.bottle.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit updated formula
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/openwatcom-v2.rb
+          if git diff --cached --quiet; then
+            echo "No bottle changes to commit."
+          else
+            git commit -m "openwatcom-v2: update ${{ steps.version.outputs.version }} bottle. [skip ci]"
+            git push
+          fi
