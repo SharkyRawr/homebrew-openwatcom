@@ -96,7 +96,7 @@ jobs:
         with:
           tag_name: openwatcom-v2-${{ steps.version.outputs.version }}
           name: openwatcom-v2 ${{ steps.version.outputs.version }}
-          files: bottles/*.bottle.tar.gz
+          files: bottles/*.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
