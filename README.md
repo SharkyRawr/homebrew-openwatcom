@@ -134,6 +134,6 @@ Pull requests are welcome. If you encounter issues with this Homebrew tap, pleas
 
 ## License
 
-This tap's packaging scripts are provided under the same terms as the [Open Watcom license](https://github.com/open-watcom/open-watcom-v2/blob/master/LICENSE).
+This tap's packaging scripts are provided under the same terms as the [Open Watcom license](https://raw.githubusercontent.com/open-watcom/open-watcom-v2/refs/heads/master/license.txt).
 
 Open Watcom itself is licensed under the [Watcom-1.0](https://spdx.org/licenses/Watcom-1.0.html) license.
