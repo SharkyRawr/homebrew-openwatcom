@@ -98,5 +98,5 @@ jobs:
             echo "No bottle changes to commit."
           else
             git commit -m "openwatcom-v2: update ${{ steps.version.outputs.version }} bottle. [skip ci]"
-            git push
+            git push origin main
           fi
