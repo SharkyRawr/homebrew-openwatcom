@@ -74,6 +74,17 @@ jobs:
           fi
           brew bottle --merge --write --no-commit --no-all-checks "${json_files[@]}"
 
+      - name: Rename bottle files to match Homebrew URL encoding
+        run: |
+          for json in bottles/*.bottle.json; do
+            local_name=$(jq -r 'to_entries[0].value.bottle.tags[].local_filename' "$json")
+            remote_name=$(jq -r 'to_entries[0].value.bottle.tags[].filename' "$json")
+            if [ -n "$local_name" ] && [ -n "$remote_name" ] && [ -f "bottles/$local_name" ]; then
+              mv "bottles/$local_name" "bottles/$remote_name"
+              echo "Renamed $local_name -> $remote_name"
+            fi
+          done
+
       - name: Get version
         id: version
         run: |
