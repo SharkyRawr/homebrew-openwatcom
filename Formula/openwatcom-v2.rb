@@ -8,7 +8,6 @@ class OpenwatcomV2 < Formula
 
   bottle do
     root_url "https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-2026-05-02"
-    rebuild 1
     sha256 cellar: :any_skip_relocation, arm64_tahoe: "d7b8852c4e4f8fd911a6cb7bee9f56af5102f1864edc6511cd2136ceabdd72f4"
   end
 
