@@ -1,16 +1,10 @@
 class OpenwatcomV2 < Formula
   desc "C/C++ compiler and tools"
   homepage "https://github.com/open-watcom/open-watcom-v2"
-  url "https://github.com/open-watcom/open-watcom-v2/releases/download/2026-07-13-Build/ow-snapshot.tar.xz"
-  version "2026-07-13"
-  sha256 "35e9c56ca93234ba0b8b596387815399317ea0548aeac1318f0674dca3921314"
+  url "https://github.com/open-watcom/open-watcom-v2/releases/download/2026-08-01-Build/ow-snapshot.tar.xz"
+  version "2026-08-01"
+  sha256 "6279e1bf7aea4ceba24539d7924f095142047fa55d352b3ba96f33c81ededd32"
   license "Watcom-1.0"
-
-  bottle do
-    root_url "https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-2026-07-13"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe: "d70dca9df41414ab94327f4464047c7eb8dde363e2426cc0a3043d01afbf2e0a"
-  end
 
   # The snapshot is a multi-platform distribution.
   # macOS host binaries are in bino64 (Intel) and armo64 (Apple Silicon).
