@@ -5,6 +5,7 @@ class OpenwatcomV2 < Formula
   version "2026-08-01"
   sha256 "6279e1bf7aea4ceba24539d7924f095142047fa55d352b3ba96f33c81ededd32"
   license "Watcom-1.0"
+  head "https://github.com/open-watcom/open-watcom-v2/releases/download/Current-build/ow-snapshot.tar.xz"
 
   bottle do
     root_url "https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-2026-08-01"

@@ -20,6 +20,12 @@ brew install openwatcom-v2
 
 The formula installs a pre-built snapshot release of Open Watcom V2 and provides a ready-to-use bottle for fast installation.
 
+To install the continuously updated `Current-build` snapshot without a bottle:
+
+```bash
+brew install --HEAD openwatcom-v2
+```
+
 ## Environment Setup
 
 After installation, set up the Open Watcom environment by sourcing the provided shell script:
