@@ -17,9 +17,6 @@ jobs:
         os:
           - macos-26      # Apple Silicon (latest)
     runs-on: ${{ matrix.os }}
-    env:
-      # @todo fix me
-      HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
