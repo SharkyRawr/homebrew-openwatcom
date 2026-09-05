@@ -1,15 +1,15 @@
 class OpenwatcomV2 < Formula
   desc "C/C++ compiler and tools"
   homepage "https://github.com/open-watcom/open-watcom-v2"
-  url "https://github.com/open-watcom/open-watcom-v2/releases/download/2026-08-01-Build/ow-snapshot.tar.xz"
-  version "2026-08-01"
-  sha256 "6279e1bf7aea4ceba24539d7924f095142047fa55d352b3ba96f33c81ededd32"
+  url "https://github.com/open-watcom/open-watcom-v2/releases/download/2026-09-01-Build/ow-snapshot.tar.xz"
+  version "2026-09-01"
+  sha256 "bac354f3c75ffa49ff8d70a44e475de7e7c1823fff04b80c14787bd0792c9bdf"
   license "Watcom-1.0"
   head "https://github.com/open-watcom/open-watcom-v2/releases/download/Current-build/ow-snapshot.tar.xz"
 
   bottle do
-    root_url "https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-2026-08-01"
-    rebuild 2
+    root_url "https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-2026-09-01"
+    rebuild 1
     sha256 cellar: :any_skip_relocation, arm64_tahoe: "0faf52a9c2fa76a2bfaf3699f7766aea1ce5c4dccf95506c3dd446f69d11303a"
   end
 
