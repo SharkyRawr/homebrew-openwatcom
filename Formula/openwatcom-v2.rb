@@ -9,8 +9,8 @@ class OpenwatcomV2 < Formula
 
   bottle do
     root_url "https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-2026-09-01"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe: "0faf52a9c2fa76a2bfaf3699f7766aea1ce5c4dccf95506c3dd446f69d11303a"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, arm64_tahoe: "12f26f056e8be8e54352b26678d1e6c646e6c0313e999470472ae7b42aeed175"
   end
 
   # The snapshot is a multi-platform distribution.
