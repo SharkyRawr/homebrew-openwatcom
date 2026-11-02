@@ -7,6 +7,12 @@ class OpenwatcomV2 < Formula
   license "Watcom-1.0"
   head "https://github.com/open-watcom/open-watcom-v2/releases/download/Current-build/ow-snapshot.tar.xz"
 
+  bottle do
+    root_url "https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-2026-11-01"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_tahoe: "2872ba38fde94b33db3e120d64361ba5f6668823c4394df0d58e5f67399fdff2"
+  end
+
   # The snapshot is a multi-platform distribution.
   # macOS host binaries are in bino64 (Intel) and armo64 (Apple Silicon).
 
