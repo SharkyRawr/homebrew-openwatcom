@@ -1,16 +1,14 @@
 class OpenwatcomV2 < Formula
   desc "C/C++ compiler and tools"
   homepage "https://github.com/open-watcom/open-watcom-v2"
-  url "https://github.com/open-watcom/open-watcom-v2/releases/download/2026-10-01-Build/ow-snapshot.tar.xz"
+  url "https://github.com/open-watcom/open-watcom-v2/releases/download/2026-11-01-Build/ow-snapshot.tar.xz"
   version "2026-10-01"
-  sha256 "e6aa1b1e40ac8bbf97658d2c70fff8a4242d6ca4a1c60806f2baa5317083d4fe"
+  sha256 "89e90b7544cf3ea4a38124ec4c104a5027f31101405d7115c3f833daa465bb48"
   license "Watcom-1.0"
   head "https://github.com/open-watcom/open-watcom-v2/releases/download/Current-build/ow-snapshot.tar.xz"
 
   bottle do
     root_url "https://github.com/SharkyRawr/homebrew-openwatcom/releases/download/openwatcom-v2-2026-10-01"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe: "15800db72ca77325fb986a48ab9cd4150548d37a87b14857e4d779a24d833f93"
   end
 
   # The snapshot is a multi-platform distribution.
